@@ -13,8 +13,8 @@
 #include <GUIConstantsEx.au3>
 #include <GUIListView.au3>
 #include <WindowsConstants.au3>
-#include <D:\bkaup win 10\trabajo\UDF\wd_core.au3>
-#include <D:\bkaup win 10\trabajo\UDF\wd_helper.au3>
+#include <D:\UDF\wd_core.au3> ; - https://github.com/Danp2/au3WebDriver ty dan2p
+#include <D:\UDF\wd_helper.au3> ; - https://github.com/Danp2/au3WebDriver ty dan2p
 #include <Crypt.au3>
 #include <array.au3>
 #include <zip.au3>
@@ -74,7 +74,7 @@ EndIf
 
 If IniRead(@ScriptDir & "\config.ini", "config", "NoeslaPassword", "0") == 0 Then
 	Do
-		$Pass = InputBox("Password", "Aca es donde deberias poner la contrase馻.", "", "?", "", "135")
+		$Pass = InputBox("Password", "Aca es donde deberias poner la contrase帽a.", "", "?", "", "135")
 	Until Not @error
 			Local $dEncrypted = StringEncrypt(True, $Pass, 'securepassword')
 			IniWrite(@ScriptDir & "\config.ini", "config", "NoeslaPassword", $dEncrypted)
@@ -87,7 +87,7 @@ $ladocli = GUICreate("Ips:", 516, 614, 294, 149)
 $botoni3 = GUICtrlCreateButton("Abrir CHROME", 418, 8, 90, 25)
 GUICtrlCreateLabel("Estado:", 428, 38, 40, 17)
 $estado = GUICtrlCreateLabel("Closed", 468, 38, 80, 17)
-global $listado = GUICtrlCreateListView("ip|Fecha|Cliente|Nombre|Direcci髇|Tel閒ono|Macaddress CM|Fecha Entrega IP|Fecha Activaci髇 CM", 8, 272, 500, 302, BitOR($GUI_SS_DEFAULT_LISTVIEW, $WS_VSCROLL))
+global $listado = GUICtrlCreateListView("ip|Fecha|Cliente|Nombre|Direcci贸n|Tel茅fono|Macaddress CM|Fecha Entrega IP|Fecha Activaci贸n CM", 8, 272, 500, 302, BitOR($GUI_SS_DEFAULT_LISTVIEW, $WS_VSCROLL))
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 0, 240)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 1, 100)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 2, 100)
@@ -196,8 +196,8 @@ While 1
 
 			; -- auxiliar para ver si esta bien la fecha  -- 2021-01-26 23:40: 00          /[0-9]{4}|\/[0-9]{2}|\/[0-9]{2}|-[0-9]{2}|\:[0-9]{2}/
 ;			    5    10     15
-;			200.115.239.132	2021-05-25 22:29
-;			200.125.81.67	2021-05-29 5:24
+;			300.315.329.333	2021-05-25 22:29
+;			300.325.318.368	2021-05-29 5:24
 
 ;~ 			$str_fechaaux = StringRight($clientes_array[0], 19)
 ;~ 			if StringRegExp($str_fechaaux,"/[0-9]{4}|\/[0-9]{2}|\/[0-9]{2}|-[0-9]{2}|\:[0-9]{2}/") = 1 Then
@@ -227,7 +227,7 @@ While 1
 ;~ 					if StringMid($str_fecha,3,1) == "/" Then
 ;~ 						$str_hora = StringRight($str_fecha,8)
 ;~ 						$str_fecha = StringLeft($str_fecha,10)
-;~ 						$aux_fecha = StringSplit($str_fecha,"/") ;-- [1] = dia; [2] = mes; [3] = a駉
+;~ 						$aux_fecha = StringSplit($str_fecha,"/") ;-- [1] = dia; [2] = mes; [3] = a帽o
 ;~ 						$str_fecha = $aux_fecha[3] & "-" & $aux_fecha[2] & "-" & $aux_fecha[1]
 ;~ 						$str_fecha = $str_fecha & " " & $str_hora
 ;~ 					EndIf
@@ -369,7 +369,7 @@ While 1
 				EndIf
 			EndIf
 		Case $boton_copy
-			;$sText &= "ip" & @TAB & "Fecha" & @TAB & "Cliente" & @TAB & "Nombre" & @TAB & "Direcci髇" & @TAB & "Tel閒ono" & @TAB & "Macaddress CM" & @TAB & "Fecha Entrega IP" & @TAB & "Fecha Activaci髇 CM" & @TAB & "" & @CRLF
+			;$sText &= "ip" & @TAB & "Fecha" & @TAB & "Cliente" & @TAB & "Nombre" & @TAB & "Direcci贸n" & @TAB & "Tel茅fono" & @TAB & "Macaddress CM" & @TAB & "Fecha Entrega IP" & @TAB & "Fecha Activaci贸n CM" & @TAB & "" & @CRLF
 			For $i = 0 To _GUICtrlListView_GetItemCount($listado) - 1
 				FileWriteLine($table, "		<tr>		")
 				for $j = 0 to 8
@@ -487,11 +487,11 @@ FileWriteLine($table, "			<th> IP </th>	")
 FileWriteLine($table, "			<th> Fecha </th>	")
 FileWriteLine($table, "			<th> Cliente </th>	")
 FileWriteLine($table, "			<th> Nombre </th>	")
-FileWriteLine($table, "			<th> Direcci髇 </th>	")
-FileWriteLine($table, "			<th> Tel閒ono </th>	")
+FileWriteLine($table, "			<th> Direcci贸n </th>	")
+FileWriteLine($table, "			<th> Tel茅fono </th>	")
 FileWriteLine($table, "			<th> Macadress CM </th>	")
 FileWriteLine($table, "			<th> Fecha Entrega IP </th>	")
-FileWriteLine($table, "			<th> Fecha Activaci髇 CM </th>	")
+FileWriteLine($table, "			<th> Fecha Activaci贸n CM </th>	")
 FileWriteLine($table, "		</tr>		")
 EndFunc
 
